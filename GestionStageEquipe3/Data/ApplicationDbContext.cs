@@ -11,6 +11,7 @@ namespace GestionStageEquipe3.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+
         }
     }
 }
