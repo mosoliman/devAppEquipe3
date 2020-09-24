@@ -10,12 +10,11 @@ namespace GestionStageEquipe3.Areas.Stages.Models
     public class Politesse
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid TitreId { get; set; }
+        public int PolitesseId { get; set; }
 
         [StringLength(200, ErrorMessage = "Vous devez entrer moins de caractères")]
-        [Display(Description = "Description du titre")]
-        public string DescriptionTitre { get; set; }
+        [Display(Description = "Description de la politesse")]
+        public string DescriptionPolitesse { get; set; }
 
     }
 }

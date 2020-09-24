@@ -7,15 +7,14 @@ using System.Threading.Tasks;
 
 namespace GestionStageEquipe3.Areas.Stages.Models
 {
-    public class Politesse
+    public class Titre
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid PolitesseId { get; set; }
+        public int TitreId { get; set; }
 
         [StringLength(200, ErrorMessage = "Vous devez entrer moins de caractères")]
-        [Display(Description = "Description de la Politesse")]
-        public string DescriptionPolitesse { get; set; }
+        [Display(Description = "Description du Titre")]
+        public string DescriptionTitre { get; set; }
 
     }
 }
