@@ -11,11 +11,11 @@ namespace GestionStageEquipe3.Areas.Stages.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid TitreId { get; set; }
+        public Guid PolitesseId { get; set; }
 
         [StringLength(200, ErrorMessage = "Vous devez entrer moins de caractères")]
-        [Display(Description = "Description du titre")]
-        public string DescriptionTitre { get; set; }
+        [Display(Description = "Description de la Politesse")]
+        public string DescriptionPolitesse { get; set; }
 
     }
 }
