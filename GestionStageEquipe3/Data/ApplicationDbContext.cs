@@ -19,7 +19,7 @@ namespace GestionStageEquipe3.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Employeur>().Property(e => e.EmployeurId).HasDefaultValue("newid()");
+            modelBuilder.Entity<Employeur>().Property(e => e.EmployeurId).HasDefaultValueSql("newid()");
         }
 
     }
