@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace GestionStageEquipe3.Areas.Stages.Models
 {
-    public class Titre
+    public class Province
     {
         [Key]
-        public int TitreId { get; set; }
+        public int PolitesseId { get; set; }
 
         [StringLength(200, ErrorMessage = "Vous devez entrer moins de caractères")]
-        [Display(Description = "Description du titre")]
-        public string DescriptionRegionAdministrative { get; set; }
-
+        [Display(Description = "Description de la province")]
+        public string DescriptionProvince { get; set; }
     }
 }
