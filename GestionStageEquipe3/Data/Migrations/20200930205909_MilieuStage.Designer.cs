@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GestionStageEquipe3.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200924174901_CreationEmployeur")]
-    partial class CreationEmployeur
+    [Migration("20200930205909_MilieuStage")]
+    partial class MilieuStage
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,52 +21,71 @@ namespace GestionStageEquipe3.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("GestionStageEquipe3.Areas.Stages.Models.Employeur", b =>
+            modelBuilder.Entity("GestionStageEquipe3.Areas.Stages.Models.ResponsableAdmin", b =>
                 {
-                    b.Property<Guid>("EmployeurId")
+                    b.Property<Guid>("ResponsableAdminId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("newid()");
 
-                    b.Property<string>("AdresseEmployeur")
+                    b.Property<bool>("Actif")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Adresse")
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
-                    b.Property<int>("CellulaireEmployeur")
-                        .HasColumnType("int")
-                        .HasMaxLength(10);
+                    b.Property<string>("Cellulaire")
+                        .HasColumnType("nvarchar(17)")
+                        .HasMaxLength(17);
 
-                    b.Property<string>("CodePostalEmployeur")
-                        .HasColumnType("nvarchar(6)")
-                        .HasMaxLength(6);
+                    b.Property<string>("CodePostal")
+                        .HasColumnType("nvarchar(7)")
+                        .HasMaxLength(7);
 
-                    b.Property<string>("CourrielEmployeur")
+                    b.Property<string>("Courriel")
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
-                    b.Property<string>("NomEmployeur")
+                    b.Property<string>("Nom")
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
-                    b.Property<int>("PosteEmployeur")
-                        .HasColumnType("int")
-                        .HasMaxLength(10);
-
-                    b.Property<string>("PrénomEmployeur")
+                    b.Property<string>("PolitesseID")
                         .HasColumnType("nvarchar(200)")
                         .HasMaxLength(200);
 
-                    b.Property<int>("TelecopieurEmployeur")
+                    b.Property<int>("Poste")
                         .HasColumnType("int")
-                        .HasMaxLength(10);
+                        .HasMaxLength(4);
 
-                    b.Property<int>("TelephoneEmployeur")
-                        .HasColumnType("int")
-                        .HasMaxLength(10);
+                    b.Property<string>("Prenom")
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
-                    b.HasKey("EmployeurId");
+                    b.Property<string>("Province")
+                        .HasColumnType("nvarchar(20)")
+                        .HasMaxLength(20);
 
-                    b.ToTable("Employeur");
+                    b.Property<string>("Telecopieur")
+                        .HasColumnType("nvarchar(17)")
+                        .HasMaxLength(17);
+
+                    b.Property<string>("Telephone")
+                        .HasColumnType("nvarchar(17)")
+                        .HasMaxLength(17);
+
+                    b.Property<string>("TitreID")
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("Ville")
+                        .HasColumnType("nvarchar(45)")
+                        .HasMaxLength(45);
+
+                    b.HasKey("ResponsableAdminId");
+
+                    b.ToTable("ResponsableAdmin");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
