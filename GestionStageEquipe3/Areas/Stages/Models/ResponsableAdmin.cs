@@ -21,13 +21,13 @@ namespace GestionStageEquipe3.Areas.Stages.Models
         [Display(Description = "Nom du responsable administratif")]
         public string Nom { get; set; }
 
-        /**********************************************************************************/
+        /*******************************Foreign keys****************************************/
         [StringLength(200, ErrorMessage = "Vous devez entrer moins de caractères")]
         [Display(Description = "Politesse du responsable administratif")]
         public string PolitesseID { get; set; }
         /**********************************************************************************/
 
-        /**********************************************************************************/
+        /*******************************Foreign keys****************************************/
         [StringLength(200, ErrorMessage = "Vous devez entrer moins de caractères")]
         [Display(Description = "Titre du responsable administratif")]
         public string TitreID { get; set; }
@@ -63,10 +63,10 @@ namespace GestionStageEquipe3.Areas.Stages.Models
         public string Adresse { get; set; }
 
         [StringLength(45, ErrorMessage = "Vous devez entrer moins de caractères")]
-        [Display(Description = "l'adresse du responsable administratif")]
+        [Display(Description = "Ville du responsable administratif")]
         public string Ville { get; set; }
 
-        /**********************************************************************************/
+        /*******************************Foreign keys****************************************/
         [StringLength(20, ErrorMessage = "Vous devez entrer moins de caractères")]
         [Display(Description = "Province du responsable administratif")]
         public string Province { get; set; }
@@ -75,6 +75,8 @@ namespace GestionStageEquipe3.Areas.Stages.Models
         [StringLength(7, ErrorMessage = "Vous devez entrer moins de caractères")]
         [Display(Description = "Code postal du responsable administratif")]
         public string CodePostal { get; set; }
+
+        public bool Actif { get; set; }
 
         
 
