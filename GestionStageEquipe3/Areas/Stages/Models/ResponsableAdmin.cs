@@ -68,9 +68,9 @@ namespace GestionStageEquipe3.Areas.Stages.Models
         public string Ville { get; set; }
 
         /*******************************Foreign key Province****************************************/
-        public int ProvinceId {get; set; }
+        public int ProvinceId { get; set; }
 
-        public Province Province {get; set; }
+        public Province Province { get; set; }
         /**********************************************************************************/
 
         [StringLength(7, ErrorMessage = "Vous devez entrer moins de caractères")]
