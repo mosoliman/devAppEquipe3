@@ -70,7 +70,7 @@ namespace GestionStageEquipe3.Areas.Stages.Models
         /*******************************Foreign key Province****************************************/
         public int ProvinceId {get; set; }
 
-        public P Province {get; set; }
+        public Province Province {get; set; }
         /**********************************************************************************/
 
         [StringLength(7, ErrorMessage = "Vous devez entrer moins de caractères")]
