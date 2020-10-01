@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace GestionStageEquipe3.Areas.Stages.Models
 {
+    
     public class ResponsableAdmin
     {
         [Key]
@@ -21,16 +22,16 @@ namespace GestionStageEquipe3.Areas.Stages.Models
         [Display(Description = "Nom du responsable administratif")]
         public string Nom { get; set; }
 
-        /*******************************Foreign keys****************************************/
-        [StringLength(200, ErrorMessage = "Vous devez entrer moins de caractères")]
-        [Display(Description = "Politesse du responsable administratif")]
-        public string PolitesseID { get; set; }
+        /*******************************Foreign key Politesse****************************************/
+        public int PolitesseId {get; set; }
+
+        public Politesse Politesse {get; set; }
         /**********************************************************************************/
 
-        /*******************************Foreign keys****************************************/
-        [StringLength(200, ErrorMessage = "Vous devez entrer moins de caractères")]
-        [Display(Description = "Titre du responsable administratif")]
-        public string TitreID { get; set; }
+        /*******************************Foreign key Titre****************************************/
+        public int TitreId {get; set; }
+
+        public Titre Titre {get; set; }
         /**********************************************************************************/
 
 
@@ -66,10 +67,10 @@ namespace GestionStageEquipe3.Areas.Stages.Models
         [Display(Description = "Ville du responsable administratif")]
         public string Ville { get; set; }
 
-        /*******************************Foreign keys****************************************/
-        [StringLength(20, ErrorMessage = "Vous devez entrer moins de caractères")]
-        [Display(Description = "Province du responsable administratif")]
-        public string Province { get; set; }
+        /*******************************Foreign key Province****************************************/
+        public int ProvinceId {get; set; }
+
+        public P Province {get; set; }
         /**********************************************************************************/
 
         [StringLength(7, ErrorMessage = "Vous devez entrer moins de caractères")]

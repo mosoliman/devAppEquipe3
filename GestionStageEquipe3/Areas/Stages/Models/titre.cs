@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace GestionStageEquipe3.Areas.Stages.Models
 {
+    [Table("Titre", Schema = "dbo")]
     public class Titre
     {
         [Key]
@@ -15,6 +16,9 @@ namespace GestionStageEquipe3.Areas.Stages.Models
         [StringLength(200, ErrorMessage = "Vous devez entrer moins de caractères")]
         [Display(Description = "Description du titre")]
         public string DescriptionRegionAdministrative { get; set; }
+
+        public ICollection<ResponsableAdmin> ResponsableAdmins {get; set; }
+
 
     }
 }

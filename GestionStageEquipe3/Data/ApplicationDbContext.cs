@@ -9,6 +9,15 @@ namespace GestionStageEquipe3.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
+        public DbSet<ResponsableAdmin> ResponsableAdmin {get; set; }
+
+        public DbSet<Politesse> Politesse {get; set:}
+
+        public DbSet<Titre> Titre {get; set:}
+
+        public DbSet<Province> Province {get; set:}
+
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
