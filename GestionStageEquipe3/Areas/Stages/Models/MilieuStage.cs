@@ -12,7 +12,7 @@ namespace GestionStageEquipe3.Areas.Stages.Models
         // ENTREPRISE
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public Guid MilieuStageId { get; set; }
+        public Guid MilieuStageId { get; set; }
 
         [StringLength(200, ErrorMessage = "Vous devez entrer moins de caractères")]
         [Display(Description = "Nom de l'entreprise")]
@@ -30,13 +30,13 @@ namespace GestionStageEquipe3.Areas.Stages.Models
 
         /*******************************Foreign keys****************************************/
         [StringLength(20, ErrorMessage = "Vous devez entrer moins de caractères")]
-		[Display(Description = "Province du de l'entreprise")]
-		public string ProvinceEn { get; set; }
+        [Display(Description = "Province du de l'entreprise")]
+        public string ProvinceEntreprise { get; set; }
         /**********************************************************************************/
 
         [StringLength(7, ErrorMessage = "Vous devez entrer moins de caractères")]
-		[Display(Description = "Code postal de l'entreprise")]
-		public string CodepostaleEntreprise { get; set; }
+        [Display(Description = "Code postal de l'entreprise")]
+        public string CodepostaleEntreprise { get; set; }
 
         [StringLength(45, ErrorMessage = "Vous devez entrer moins de caractères")]
         [Display(Description = "Région administrative de l'entreprise")]
@@ -71,7 +71,7 @@ namespace GestionStageEquipe3.Areas.Stages.Models
 
         [StringLength(45, ErrorMessage = "Vous devez entrer moins de caractères")]
         [Display(Description = "Ville du responsable administratif")]
-        public string VillResponsable { get; set; }
+        public string VilleResponsable { get; set; }
 
         /*******************************Foreign keys****************************************/
         [StringLength(20, ErrorMessage = "Vous devez entrer moins de caractères")]
