@@ -11,12 +11,12 @@ namespace GestionStageEquipe3.Areas.Stages.Models
     public class Province
     {
         [Key]
-        public int PolitesseId { get; set; }
+        public int ProvinceId { get; set; }
 
         [StringLength(200, ErrorMessage = "Vous devez entrer moins de caractères")]
         [Display(Description = "Description de la province")]
         public string DescriptionProvince { get; set; }
 
-        public ICollection<ResponsableAdmin> ResponsableAdmins { get; set; }
+        public ICollection<MilieuStage> MilieuStages { get; set; }
     }
 }

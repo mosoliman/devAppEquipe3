@@ -15,6 +15,6 @@ namespace GestionStageEquipe3.Areas.Stages.Models
         [Display(Description = "Description de la region administrative")]
         public string DescriptionRegionAdministrative { get; set; }
 
-        public ICollection<ResponsableAdmin> ResponsableAdmins { get; set; }
+        public ICollection<MilieuStage> MilieuStages { get; set; }
     }
 }

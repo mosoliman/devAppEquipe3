@@ -33,5 +33,7 @@ namespace GestionStageEquipe3.Data
             modelBuilder.Entity<ResponsableAdmin>().Property(e => e.ResponsableAdminId).HasDefaultValueSql("newid()");
         }
 
+        public DbSet<GestionStageEquipe3.Areas.Stages.Models.MilieuStage> MilieuStage { get; set; }
+
     }
 }

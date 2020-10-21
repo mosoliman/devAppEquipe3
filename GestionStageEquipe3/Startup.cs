@@ -63,7 +63,7 @@ namespace GestionStageEquipe3
             {
                 endpoints.MapControllerRoute(
                     name: "MyArea",
-                    pattern: "{area:exists}/{controller=ResponsableAdmin}/{action=Index}/{id?}");
+                    pattern: "{area:exists}/{controller=MilieuStages}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "default",

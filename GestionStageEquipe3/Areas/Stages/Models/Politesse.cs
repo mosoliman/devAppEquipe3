@@ -17,7 +17,7 @@ namespace GestionStageEquipe3.Areas.Stages.Models
         [Display(Description = "Description de la politesse")]
         public string DescriptionPolitesse { get; set; }
 
-        public ICollection<ResponsableAdmin> ResponsableAdmins {get; set; }
+        public ICollection<MilieuStage> MilieuStages {get; set; }
 
     }
 }
