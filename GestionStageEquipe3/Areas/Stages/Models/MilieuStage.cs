@@ -36,7 +36,7 @@ namespace GestionStageEquipe3.Areas.Stages.Models
 
 
         /*******************************Foreign keys Province****************************************/
-        public int ProvinceEntrepriseId { get; set; }
+        public int ProvinceId { get; set; }
 
         public Province Province { get; set; }
         /*******************************Foreign keys Region Administrative****************************************/
@@ -111,6 +111,12 @@ namespace GestionStageEquipe3.Areas.Stages.Models
         [StringLength(7, ErrorMessage = "Vous devez entrer moins de caractères")]
         [Display(Description = "Code postal du responsable administratif")]
         public string CodePostalResponsable { get; set; }
+
+        /*******************************Foreign keys Province****************************************/
+        //public int ProvinceResponsableId { get; set; }
+
+       // public Province ProvinceResponsable { get; set; }
+        /*******************************Foreign keys Region Administrative****************************************/
 
 
         public ICollection<EtudiantsMilieuStage> EtudiantsMilieuStage { get; set; }

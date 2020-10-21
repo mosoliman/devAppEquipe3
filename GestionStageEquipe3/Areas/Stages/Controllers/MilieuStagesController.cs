@@ -13,7 +13,7 @@ using System.Data;
 namespace GestionStageEquipe3.Areas.Stages.Controllers
 {
     [Area("Stages")]
-    [Authorize(Roles = "ResponsableAdmin")]
+    [Authorize(Roles = "Coordonnateur, ResponsableAdmin")]
     public class MilieuStagesController : Controller
     {
         private readonly ApplicationDbContext _context;
