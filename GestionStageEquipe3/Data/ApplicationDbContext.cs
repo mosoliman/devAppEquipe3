@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace GestionStageEquipe3.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<ResponsableAdmin> ResponsableAdmin { get; set; }
 

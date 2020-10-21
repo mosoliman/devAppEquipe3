@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GestionStageEquipe3.Areas.Stages.Models;
 using GestionStageEquipe3.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GestionStageEquipe3.Areas.Stages.Controllers
 {
     [Area("Stages")]
+    [Authorize(Roles = "ResponsableAdmin")]
     public class ResponsableAdminController : Controller
     {
         private readonly ApplicationDbContext _context;

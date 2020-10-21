@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,7 +11,8 @@ namespace GestionStageEquipe3.Areas.Stages.Models
     {
         // ENTREPRISE
         [Key]
-		public int MilieuStageId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+		public Guid MilieuStageId { get; set; }
 
         [StringLength(200, ErrorMessage = "Vous devez entrer moins de caractères")]
         [Display(Description = "Nom de l'entreprise")]
@@ -99,7 +101,7 @@ namespace GestionStageEquipe3.Areas.Stages.Models
 
 
 
-
+        public ICollection<EtudiantsMilieuStage> EtudiantsMilieuStage { get; set; }
 
 
     }
