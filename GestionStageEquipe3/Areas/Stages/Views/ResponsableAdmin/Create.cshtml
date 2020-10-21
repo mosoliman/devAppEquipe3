@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Create";
+    ViewBag.Options = new SelectList(Titre, nameof(Organizer.OrganizerId), nameof(Organizer.Name));
 }
 
 <h1>Create</h1>

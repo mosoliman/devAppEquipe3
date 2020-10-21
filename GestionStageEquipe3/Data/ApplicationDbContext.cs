@@ -17,6 +17,8 @@ namespace GestionStageEquipe3.Data
 
         public DbSet<Province> Province { get; set; }
 
+        public DbSet<RegionAdministrative> RegionAdministratives { get; set; }
+
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

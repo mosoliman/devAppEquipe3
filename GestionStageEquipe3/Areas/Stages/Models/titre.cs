@@ -15,7 +15,7 @@ namespace GestionStageEquipe3.Areas.Stages.Models
 
         [StringLength(200, ErrorMessage = "Vous devez entrer moins de caractères")]
         [Display(Description = "Description du titre")]
-        public string DescriptionRegionAdministrative { get; set; }
+        public string DescriptionTitre { get; set; }
 
         public ICollection<ResponsableAdmin> ResponsableAdmins {get; set; }
 

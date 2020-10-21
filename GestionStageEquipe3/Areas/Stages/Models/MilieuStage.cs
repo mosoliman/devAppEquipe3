@@ -31,7 +31,7 @@ namespace GestionStageEquipe3.Areas.Stages.Models
         /*******************************Foreign keys****************************************/
         [StringLength(20, ErrorMessage = "Vous devez entrer moins de caractères")]
 		[Display(Description = "Province du de l'entreprise")]
-		public string ProvinceEntreprise { get; set; }
+		public string ProvinceEn { get; set; }
         /**********************************************************************************/
 
         [StringLength(7, ErrorMessage = "Vous devez entrer moins de caractères")]
