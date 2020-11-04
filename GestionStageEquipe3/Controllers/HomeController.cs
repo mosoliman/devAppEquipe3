@@ -6,17 +6,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using GestionStageEquipe3.Models;
+using GestionStageEquipe3.Services.Courriels;
 
 namespace GestionStageEquipe3.Controllers
 {
     //test
     public class HomeController : Controller
     {
+
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public IEmailService _EmailService { get; }
+
+        public HomeController(ILogger<HomeController> logger, IEmailService emailService)
         {
+            // Mon commentaire
             _logger = logger;
+            _EmailService = emailService;
+            //UserManager = userManager;
         }
 
         public IActionResult Index()
@@ -24,8 +31,11 @@ namespace GestionStageEquipe3.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        //public IActionResult Privacy()
+        //public async Task<IActionResult> Privacy()
+        public async Task<ActionResult> Privacy()
         {
+            Exception erreur = await _EmailService.Send(new EmailMessage { Content = "Allo<br/><br/>Toi", FromAddresses = { new EmailAddress { Address = "rastanolet@gmail.com", Name = "Coordonateur" } }, ToAddresses = { new EmailAddress { Address = "rastanolet@gmail.com", Name = "Simon Nolet" } }, Subject = "Veuillez confirmer votre milieu de stage" });
             return View();
         }
 
