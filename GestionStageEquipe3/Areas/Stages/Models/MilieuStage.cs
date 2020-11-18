@@ -36,7 +36,7 @@ namespace GestionStageEquipe3.Areas.Stages.Models
 
 
         /*******************************Foreign keys Province****************************************/
-        public int ProvinceId { get; set; }
+        public int ProvinceEntrepriseId { get; set; }
 
         public Province Province { get; set; }
         /*******************************Foreign keys Region Administrative****************************************/
