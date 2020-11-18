@@ -1,0 +1,42 @@
+﻿@model GestionStageEquipe3.Areas.Stages.Models.EtudiantsMilieuStage
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>EtudiantsMilieuStage</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DataCanditature)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DataCanditature)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Actif)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Actif)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.MilieuStage)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.MilieuStage.MilieuStageId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ApplicationUser)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ApplicationUser.Id)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MilieuStageEtudiantId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

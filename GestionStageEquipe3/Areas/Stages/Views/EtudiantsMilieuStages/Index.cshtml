@@ -1,0 +1,53 @@
+﻿@model IEnumerable<GestionStageEquipe3.Areas.Stages.Models.EtudiantsMilieuStage>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DataCanditature)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Actif)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MilieuStage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationUser)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCanditature)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Actif)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MilieuStage.MilieuStageId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApplicationUser.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MilieuStageEtudiantId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MilieuStageEtudiantId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MilieuStageEtudiantId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -35,5 +35,7 @@ namespace GestionStageEquipe3.Data
 
         public DbSet<GestionStageEquipe3.Areas.Stages.Models.MilieuStage> MilieuStage { get; set; }
 
+        public DbSet<GestionStageEquipe3.Areas.Stages.Models.EtudiantsMilieuStage> EtudiantsMilieuStage { get; set; }
+
     }
 }

@@ -81,6 +81,10 @@ namespace GestionStageEquipe3
                     pattern: "{area:exists}/{controller=MilieuStages}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
+                    name: "MyArea",
+                    pattern: "{area:exists}/{controller=EtudiantsMilieuStages}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();

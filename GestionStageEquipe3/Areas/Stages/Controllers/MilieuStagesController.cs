@@ -9,11 +9,12 @@ using GestionStageEquipe3.Areas.Stages.Models;
 using GestionStageEquipe3.Data;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
+using System.Security.Claims;
 
 namespace GestionStageEquipe3.Areas.Stages.Controllers
 {
     [Area("Stages")]
-    [Authorize(Roles = "Coordonnateur, ResponsableAdmin")]
+    [Authorize(Roles = "Coordonnateur, ResponsableAdmin, Etudiant")]
     public class MilieuStagesController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -24,6 +25,7 @@ namespace GestionStageEquipe3.Areas.Stages.Controllers
         }
 
         // GET: Stages/MilieuStages
+        [Authorize(Roles = "Coordonnateur, Etudiant")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.MilieuStage.ToListAsync());
@@ -47,7 +49,32 @@ namespace GestionStageEquipe3.Areas.Stages.Controllers
             return View(milieuStage);
         }
 
+        [HttpPost]
+        public IActionResult Appliquer(Guid id, EtudiantsMilieuStage etudiantsMilieuStage)
+        {
+
+            
+            etudiantsMilieuStage.MilieuStageId = id;
+            etudiantsMilieuStage.DataCanditature = DateTime.Now;
+            etudiantsMilieuStage.Actif = true;
+
+
+            // trouver le id du utilisateur en cours
+            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+            var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
+            var userId = claim.Value;
+
+            etudiantsMilieuStage.Id = userId;
+
+            _context.EtudiantsMilieuStage.Add(etudiantsMilieuStage);
+            _context.SaveChanges();
+            
+            return RedirectToAction(nameof(Index));
+        }
+
+
         // GET: Stages/MilieuStages/Create
+        [Authorize(Roles = "Coordonnateur")]
         public IActionResult Create()
         {
             return View();
@@ -58,6 +85,7 @@ namespace GestionStageEquipe3.Areas.Stages.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Coordonnateur")]
         public async Task<IActionResult> Create([Bind("MilieuStageId,NumeroMilieuStage,NomMilieuStage,NomEntreprise,AdresseEntreprise,VilleEntreprise,ProvinceEntrepriseId,RegionAdministrativeEntrepriseId,CodepostaleEntreprise,Actif,NombreMaximumEtudiant,PolitesseResponsableId,PrenomResponsable,NomResponsable,TitreResponsableId,CourrielResponsable,TelephoneResponsable,PosteResponsable,CellulaireResponsable,TelecopieurResponsable,AdresseResponsable,VilleResponsable,CodePostalResponsable")] MilieuStage milieuStage)
         {
             if (ModelState.IsValid)
@@ -71,6 +99,7 @@ namespace GestionStageEquipe3.Areas.Stages.Controllers
         }
 
         // GET: Stages/MilieuStages/Edit/5
+        [Authorize(Roles = "Coordonnateur, ResponsableAdmin")]
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -91,6 +120,7 @@ namespace GestionStageEquipe3.Areas.Stages.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Coordonnateur, ResponsableAdmin")]
         public async Task<IActionResult> Edit(Guid id, [Bind("MilieuStageId,NumeroMilieuStage,NomMilieuStage,NomEntreprise,AdresseEntreprise,VilleEntreprise,ProvinceEntrepriseId,RegionAdministrativeEntrepriseId,CodepostaleEntreprise,Actif,NombreMaximumEtudiant,PolitesseResponsableId,PrenomResponsable,NomResponsable,TitreResponsableId,CourrielResponsable,TelephoneResponsable,PosteResponsable,CellulaireResponsable,TelecopieurResponsable,AdresseResponsable,VilleResponsable,CodePostalResponsable")] MilieuStage milieuStage)
         {
             if (id != milieuStage.MilieuStageId)
@@ -122,6 +152,7 @@ namespace GestionStageEquipe3.Areas.Stages.Controllers
         }
 
         // GET: Stages/MilieuStages/Delete/5
+        [Authorize(Roles = "Coordonnateur")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -142,6 +173,7 @@ namespace GestionStageEquipe3.Areas.Stages.Controllers
         // POST: Stages/MilieuStages/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Coordonnateur")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var milieuStage = await _context.MilieuStage.FindAsync(id);
