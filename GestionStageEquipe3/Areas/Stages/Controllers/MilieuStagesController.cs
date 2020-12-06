@@ -10,6 +10,9 @@ using GestionStageEquipe3.Data;
 using Microsoft.AspNetCore.Authorization;
 using System.Data;
 using System.Security.Claims;
+using GestionStageEquipe3.Services.Courriels;
+using GestionStageEquipe3.Controllers;
+using Microsoft.Extensions.Logging;
 
 namespace GestionStageEquipe3.Areas.Stages.Controllers
 {
@@ -19,9 +22,16 @@ namespace GestionStageEquipe3.Areas.Stages.Controllers
     {
         private readonly ApplicationDbContext _context;
 
-        public MilieuStagesController(ApplicationDbContext context)
+        private readonly ILogger<MilieuStagesController> _logger;
+
+        public IEmailService _EmailService { get; }
+
+        public MilieuStagesController(ApplicationDbContext context, ILogger<MilieuStagesController> logger, IEmailService emailService)
         {
             _context = context;
+
+            _logger = logger;
+            _EmailService = emailService;
         }
 
         // GET: Stages/MilieuStages
@@ -93,6 +103,7 @@ namespace GestionStageEquipe3.Areas.Stages.Controllers
                 milieuStage.MilieuStageId = Guid.NewGuid();
                 _context.Add(milieuStage);
                 await _context.SaveChangesAsync();
+                Exception erreur = await _EmailService.Send(new EmailMessage { Content = "Allo" + milieuStage.NomResponsable.ToString() + ",<br/><br/>Les informations de bases de votre milieu de stage ont été ajouté par un coordonnateur. Veuillez cliquer sur le lien suivant pour remplir le restant des informations : ", FromAddresses = { new EmailAddress { Address = "rastanolet@gmail.com", Name = "Gestion de Stages" } }, ToAddresses = { new EmailAddress { Address = milieuStage.CourrielResponsable.ToString(), Name = milieuStage.NomResponsable.ToString() } }, Subject = "Veuillez completer votre milieu de stage" });
                 return RedirectToAction(nameof(Index));
             }
             return View(milieuStage);
