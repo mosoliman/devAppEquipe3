@@ -103,8 +103,10 @@ namespace GestionStageEquipe3.Areas.Stages.Controllers
                 milieuStage.MilieuStageId = Guid.NewGuid();
                 _context.Add(milieuStage);
                 await _context.SaveChangesAsync();
-                Exception erreur = await _EmailService.Send(new EmailMessage { Content = "Allo" + milieuStage.NomResponsable.ToString() + ",<br/><br/>Les informations de bases de votre milieu de stage ont été ajouté par un coordonnateur. Veuillez cliquer sur le lien suivant pour remplir le restant des informations : ", FromAddresses = { new EmailAddress { Address = "rastanolet@gmail.com", Name = "Gestion de Stages" } }, ToAddresses = { new EmailAddress { Address = milieuStage.CourrielResponsable.ToString(), Name = milieuStage.NomResponsable.ToString() } }, Subject = "Veuillez completer votre milieu de stage" });
+                string lien = Url.Link("MyArea", new { action = "Edit" , id = milieuStage.MilieuStageId });
+                Exception erreur = await _EmailService.Send(new EmailMessage { Content = "Allo" + milieuStage.NomResponsable.ToString() + ",<br/><br/>Les informations de bases de votre milieu de stage ont été ajouté par un coordonnateur. Veuillez cliquer sur le lien suivant pour remplir le restant des informations : " + lien, FromAddresses = { new EmailAddress { Address = "rastanolet@gmail.com", Name = "Gestion de Stages" } }, ToAddresses = { new EmailAddress { Address = milieuStage.CourrielResponsable.ToString(), Name = milieuStage.NomResponsable.ToString() } }, Subject = "Veuillez completer votre milieu de stage" });
                 return RedirectToAction(nameof(Index));
+                
             }
             return View(milieuStage);
         }
