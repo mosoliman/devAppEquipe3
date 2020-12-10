@@ -143,11 +143,18 @@
             @Html.DisplayFor(model => model.CodePostalResponsable)
         </dd>
     </dl>
-    <form asp-action="Appliquer" asp-route-id="@Model.MilieuStageId">
-        <div class="form-group">
-            <input type="submit" value="Appliquer" class="btn btn-primary" />
-        </div>
-    </form>
+    @if (User.Identity.IsAuthenticated)
+    {
+        @if (User.IsInRole("Etudiant"))
+        {
+            <form asp-action="Appliquer" asp-route-id="@Model.MilieuStageId">
+                <div class="form-group">
+                    <input type="submit" value="Appliquer" class="btn btn-primary" />
+                </div>
+            </form>
+        }
+    }
+    
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.MilieuStageId">Edit</a> |

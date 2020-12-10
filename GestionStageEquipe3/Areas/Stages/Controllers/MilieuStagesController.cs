@@ -38,6 +38,18 @@ namespace GestionStageEquipe3.Areas.Stages.Controllers
         [Authorize(Roles = "Coordonnateur, Etudiant")]
         public async Task<IActionResult> Index()
         {
+            List<MilieuStage> listeStages = new List<MilieuStage>();
+
+            foreach (MilieuStage milieuStage in _context.MilieuStage)
+            {
+                if (milieuStage.Actif == true)
+                {
+                    listeStages.Add(milieuStage);
+                }
+            }
+
+            //trouver comment metter liste
+
             return View(await _context.MilieuStage.ToListAsync());
         }
 

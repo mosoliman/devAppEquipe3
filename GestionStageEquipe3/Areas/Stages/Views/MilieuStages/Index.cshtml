@@ -67,9 +67,22 @@
                 @Html.DisplayFor(modelItem => item.NombreMaximumEtudiant)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.MilieuStageId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.MilieuStageId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.MilieuStageId">Delete</a>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @if (User.IsInRole("Coordonnateur") || User.IsInRole("ResponsableAdmin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.MilieuStageId">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.MilieuStageId"> Details </a>
+                        <a asp-action="Delete" asp-route-id="@item.MilieuStageId"> Delete </a>
+                    }
+
+                    else
+                    {
+
+                        <a asp-action="Details" asp-route-id="@item.MilieuStageId"> Appliquer</a>
+                    }
+                }
+               
             </td>
         </tr>
 }
