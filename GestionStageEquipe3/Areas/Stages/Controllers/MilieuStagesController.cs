@@ -60,25 +60,32 @@ namespace GestionStageEquipe3.Areas.Stages.Controllers
         }
 
         [HttpPost]
-        public IActionResult Appliquer(Guid id, EtudiantsMilieuStage etudiantsMilieuStage)
+        public async Task<IActionResult> AppliquerAsync(Guid id, EtudiantsMilieuStage etudiantsMilieuStage)
         {
 
             
             etudiantsMilieuStage.MilieuStageId = id;
             etudiantsMilieuStage.DataCanditature = DateTime.Now;
             etudiantsMilieuStage.Actif = true;
+            string responsableCourriel = _context.MilieuStage.Find(id).CourrielResponsable;
+            string responsableNom = _context.MilieuStage.Find(id).NomResponsable;
 
 
             // trouver le id du utilisateur en cours
             var claimsIdentity = (ClaimsIdentity)this.User.Identity;
             var claim = claimsIdentity.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier);
             var userId = claim.Value;
+            
+
+
 
             etudiantsMilieuStage.Id = userId;
 
             _context.EtudiantsMilieuStage.Add(etudiantsMilieuStage);
             _context.SaveChanges();
-            
+
+            Exception erreur = await _EmailService.Send(new EmailMessage { Content = "Allo " + responsableNom + ",<br/><br/> Un étudiant a postulé pour participer a votre stage! ", FromAddresses = { new EmailAddress { Address = "rastanolet@gmail.com", Name = "Gestion de Stages" } }, ToAddresses = { new EmailAddress { Address = responsableCourriel, Name = responsableNom } }, Subject = "Un étudiant c'est inscrit a votre stage" });
+
             return RedirectToAction(nameof(Index));
         }
 
@@ -104,7 +111,7 @@ namespace GestionStageEquipe3.Areas.Stages.Controllers
                 _context.Add(milieuStage);
                 await _context.SaveChangesAsync();
                 string lien = Url.Link("MyArea", new { action = "Edit" , id = milieuStage.MilieuStageId });
-                Exception erreur = await _EmailService.Send(new EmailMessage { Content = "Allo" + milieuStage.NomResponsable.ToString() + ",<br/><br/>Les informations de bases de votre milieu de stage ont été ajouté par un coordonnateur. Veuillez cliquer sur le lien suivant pour remplir le restant des informations : " + lien, FromAddresses = { new EmailAddress { Address = "rastanolet@gmail.com", Name = "Gestion de Stages" } }, ToAddresses = { new EmailAddress { Address = milieuStage.CourrielResponsable.ToString(), Name = milieuStage.NomResponsable.ToString() } }, Subject = "Veuillez completer votre milieu de stage" });
+                Exception erreur = await _EmailService.Send(new EmailMessage { Content = "Allo " + milieuStage.NomResponsable.ToString() + ",<br/><br/>Les informations de bases de votre milieu de stage ont été ajouté par un coordonnateur. Veuillez cliquer sur le lien suivant pour remplir le restant des informations : " + lien, FromAddresses = { new EmailAddress { Address = "rastanolet@gmail.com", Name = "Gestion de Stages" } }, ToAddresses = { new EmailAddress { Address = milieuStage.CourrielResponsable.ToString(), Name = milieuStage.NomResponsable.ToString() } }, Subject = "Veuillez completer votre milieu de stage" });
                 return RedirectToAction(nameof(Index));
                 
             }

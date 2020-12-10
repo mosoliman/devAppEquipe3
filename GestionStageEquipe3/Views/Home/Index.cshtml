@@ -1,6 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@inject Microsoft.AspNetCore.Hosting.IHostingEnvironment hostingEnv
+@hostingEnv.EnvironmentName
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
